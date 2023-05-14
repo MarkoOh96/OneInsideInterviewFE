@@ -1,0 +1,47 @@
+<!-- <div class="modal">
+    <input type="text">
+    <p *ngIf="data && data.name">{{ data.name }}</p>
+    <p *ngIf="data && data.country">Country: {{ data.country }}</p>
+    <p *ngIf="data && data.client_id">Client ID: {{ data.client_id }}</p>
+    <h3>Developers:</h3>
+    <ul *ngIf="data && data.developers">
+      <li *ngFor="let developer of data.developers">{{ developer }}</li>
+    </ul>
+  </div> -->
+
+<h1 mat-dialog-title></h1>
+<div mat-dialog-content>
+    <form>
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput value={{data.name}}>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Country</mat-label>
+            <input matInput value={{data.country}}>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Client ID</mat-label>
+            <input matInput value={{data.client_id}}>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Assign Developer</mat-label>
+            <input type="text" matInput [formControl]="newControl" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)='addDeveloperOnProject($event.option.value)'>
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option" >
+                {{option.name}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        <mat-list role="list">
+            <mat-label>Developers</mat-label>
+            <mat-list-item role="listitem" *ngFor="let developer of data.developers">{{developer.name}}
+                <mat-icon (click)="removeDeveloper(developer)">close</mat-icon>
+            </mat-list-item>
+        </mat-list>
+    </form>
+</div>
+<div mat-dialog-actions>
+
+</div>

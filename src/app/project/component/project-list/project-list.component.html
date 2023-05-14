@@ -1,0 +1,11 @@
+<div class="container">
+    <mat-form-field>
+        <input matInput [(ngModel)]="searchTerm" placeholder="Search projects">
+    </mat-form-field>
+
+    <mat-list class="list-container">
+        <mat-list-item *ngFor="let project of filteredProjects" (click)="openModal(project)" class="list-item">
+            {{ project.name }}
+        </mat-list-item>
+    </mat-list>
+</div>
